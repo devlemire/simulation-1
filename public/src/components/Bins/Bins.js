@@ -8,7 +8,7 @@ export default class Bins extends Component {
   constructor() {
     super();
     this.state = {
-      bins: [ null, { test: true }, null, { test: true }, null ]
+      bins: [ null, null, null, null, null ]
     }
   }
 
@@ -23,9 +23,13 @@ export default class Bins extends Component {
     const { id } = this.props.match.params;
     const { bins } = this.state;
     const Bins = bins.map( (bin, i) => (
-      <Bin number={ i + 1 } binLink={ `/bin/${id}${ i + 1 }` } createLink={ `/create/${id}${ i + 1 }` } obj={ bin } />
+      bin
+      ?
+        <Bin key={ i } number={ i + 1 } binLink={ `/bin/${id}${ i + 1 }` } filled={ true } />
+      :
+        <Bin key={ i } number={ i + 1 } createLink={ `/create/${id}${ i + 1 }` } filled={ false } />
     ));
-    
+
     return (
       <div>
         { Bins }
