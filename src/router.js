@@ -1,14 +1,16 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Shelf from './components/Shelf/Shelf';
-import Bin from './components/Bin/Bin';
+import Shelves from './components/Shelves/Shelves';
+import Bins from './components/Bins/Bins';
 import Detail from './components/Detail/Detail';
+import Create from './components/Create/Create';
 
 export default (
   <Switch>
-    <Route component={ Shelf } path="/" exact />
-    <Route component={ Bin } path="/bins" />
+    <Route component={ Shelves } path="/" exact />
+    <Route component={ Bins } path="/bins/:id" />
     <Route component={ Detail } path="/bin/:id" />
+    <Route component={ Create } path="/create" />
   </Switch>
 )
