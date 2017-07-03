@@ -34,16 +34,27 @@ module.exports = {
   },
   updateBin: (req, res, next) => {
     const db = req.app.get('db');
+    if(req.body.name && req.body.price){
+      db.update_bin(req.params.id[0], req.params.id[1], req.body.name, req.body.price).then(inventory => {
 
-    db.update_bin().then(inventory => {
-      if(inventory.length > 0){
         res.status(200).send(inventory);
-      } else {
-        res.status(200).send([null]);
-      }
-      res.status(200).send(inventory);
-    }).catch(function(err) {
-      console.log(err);
-    })
+      }).catch(function(err) {
+        console.log(err);
+      });
+    } else if (req.body.name && !req.body.price){
+      db.update_bin(req.params.id[0], req.params.id[1], req.body.name).then(inventory => {
+
+        res.status(200).send(inventory);
+      }).catch(function(err) {
+        console.log(err);
+      });
+    } else if (!req.body.name && req.body.price){
+      db.update_bin(req.params.id[0], req.params.id[1], req.body.price).then(inventory => {
+
+        res.status(200).send(inventory);
+      }).catch(function(err) {
+        console.log(err);
+      });
+    }
   }
 }
