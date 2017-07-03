@@ -21,9 +21,7 @@ massive({
 const inventoryCtrl = require("./inventoryCtrl.js");
 
 app.get("/api/shelf/:id", inventoryCtrl.getShelf);
-// app.put("/api/inventory", inventoryCtrl.updateInventory);
-// app.post("/api/inventory", inventoryCtrl.addToInventory);
-// app.delete("/api/inventory", inventoryCtrl.removeFromInventory);
+app.get("/api/bin/:id", inventoryCtrl.getBin);
 
 const port = 3000;
 
