@@ -14,6 +14,7 @@ export default class Detail extends Component {
     };
 
     this.handleChange = this.handleChange.bind( this );
+    this.save = this.save.bind( this );
   }
 
   componentDidMount() {
@@ -21,16 +22,30 @@ export default class Detail extends Component {
     const { history } = this.props;
     
     axios.get( `${api.bin}/${id}` ).then( response => {
-      if ( !response.data ) {
+      const { data } = response;
+      if ( !data ) {
         history.push(`/create/${id}`);
       } else {
-        this.setState({ item: response.data });
+        this.setState({ item: data, name: data.name, price: data.price });
       }
     });
   }
 
   handleChange(prop, val) {
     this.setState({ [prop]: val });
+  }
+
+  save() {
+    const { item, price, name } = this.state;
+    const { id } = this.props.match.params;
+    if ( isNaN( price ) ) {
+      return
+    } else {
+      axios.put( `${api.bin}/${id}`, { name, price: parseInt( price ) } ).then( response => {
+        const { data } = response;
+        this.setState({ item: data, name: data.name, price: data.price, editMode: false });
+      });
+    }
   }
 
   render() {
@@ -49,7 +64,7 @@ export default class Detail extends Component {
                   <div>
                     <input onChange={ (e) => this.handleChange('name', e.target.value) } value={name} />
                     <input onChange={ (e) => this.handleChange('price', e.target.value) } value={price} />
-                    <button onClick={ () => this.handleChange('editMode', false) }> Save </button> 
+                    <button onClick={ this.save }> Save </button> 
                   </div>
                 :
                   <div>
