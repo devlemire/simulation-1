@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 export default class Bin extends Component {
   render() {
     console.log( this.props );
-    const { number, createLink, binLink, obj } = this.props;
+    const { number, createLink, binLink, filled } = this.props;
     return (
       <div>
         {
-          obj
+          filled
           ?
             <Link to={ binLink }>
               <span> Bin { number } </span>
