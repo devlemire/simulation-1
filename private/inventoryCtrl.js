@@ -4,7 +4,7 @@ module.exports = {
     db.get_shelf(req.params.id).then(inventory => {
       let maxBins = 5;
       let bins = [];
-      
+
       for( var i = 0; i < maxBins; i++ ) {
         if ( inventory[i] ) {
           bins[ inventory[i].bin - 1 ] = inventory[i];
@@ -20,7 +20,13 @@ module.exports = {
   },
   getBin: (req, res, next) => {
     const db = req.app.get('db');
+
     db.get_bin(req.params.id[0], req.params.id[1]).then(inventory => {
+      if(inventory.length > 0){
+        res.status(200).send(inventory);
+      } else {
+        res.status(200).send([null]);
+      }
       res.status(200).send(inventory);
     }).catch(function(err) {
       console.log(err);
