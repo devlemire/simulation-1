@@ -6,10 +6,10 @@ export default class Shelves extends Component {
     const { history } = this.props;
     return (
       <div>
-        <Shelf name="A" history={ history } />
-        <Shelf name="B" history={ history } />
-        <Shelf name="C" history={ history } />
-        <Shelf name="D" history={ history } />
+        <Shelf id="A" history={ history } />
+        <Shelf id="B" history={ history } />
+        <Shelf id="C" history={ history } />
+        <Shelf id="D" history={ history } />
       </div>
     )
   }
