@@ -15,6 +15,7 @@ export default class Detail extends Component {
 
     this.handleChange = this.handleChange.bind( this );
     this.save = this.save.bind( this );
+    this.delete = this.delete.bind( this );
   }
 
   componentDidMount() {
@@ -36,7 +37,7 @@ export default class Detail extends Component {
   }
 
   save() {
-    const { item, price, name } = this.state;
+    const { price, name } = this.state;
     const { id } = this.props.match.params;
     if ( isNaN( price ) ) {
       return
@@ -46,6 +47,14 @@ export default class Detail extends Component {
         this.setState({ item: data, name: data.name, price: data.price, editMode: false });
       });
     }
+  }
+
+  delete() {
+    const { id } = this.props.match.params;
+    const { history } = this.props;
+    axios.delete( `${api.bin}/${id}` ).then( response => {
+      history.push( `/bins/${id[0]}` );
+    });
   }
 
   render() {
@@ -73,6 +82,7 @@ export default class Detail extends Component {
                     <button onClick={ () => this.handleChange('editMode', true) }> Edit </button>
                   </div>
               }
+              <button onClick={ this.delete }> Delete </button>
             </div>
           :
             null
