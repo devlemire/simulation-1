@@ -27,34 +27,20 @@ module.exports = {
       } else {
         res.status(200).send( null );
       }
-      res.status(200).send(inventory);
     }).catch(function(err) {
       console.log(err);
     })
   },
   updateBin: (req, res, next) => {
     const db = req.app.get('db');
-    if(req.body.name && req.body.price){
-      db.update_bin(req.params.id[0], req.params.id[1], req.body.name, req.body.price).then(inventory => {
-
-        res.status(200).send(inventory);
-      }).catch(function(err) {
-        console.log(err);
-      });
-    } else if (req.body.name && !req.body.price){
-      db.update_bin(req.params.id[0], req.params.id[1], req.body.name).then(inventory => {
-
-        res.status(200).send(inventory);
-      }).catch(function(err) {
-        console.log(err);
-      });
-    } else if (!req.body.name && req.body.price){
-      db.update_bigit n(req.params.id[0], req.params.id[1], req.body.price).then(inventory => {
-
-        res.status(200).send(inventory);
-      }).catch(function(err) {
-        console.log(err);
-      });
-    }
+    const { name, price } = req.body;
+     db.get_bin(req.params.id[0], req.params.id[1]).then(inventory => {
+      let currentBin = inventory[0];
+      db.update_bin(req.params.id[0], req.params.id[1], name || currentBin.name, price || currentBin.price).then(inventory => {
+        res.status(200).send( inventory[0] );
+      }).catch( err => console.log(err));
+    }).catch(function(err) {
+      console.log(err);
+    })
   }
 }
