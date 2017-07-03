@@ -34,7 +34,6 @@ module.exports = {
   updateBin: (req, res, next) => {
     const db = req.app.get('db');
     const { name, price } = req.body;
-
      db.get_bin(req.params.id[0], req.params.id[1]).then(inventory => {
       let currentBin = inventory[0];
       db.update_bin(req.params.id[0], req.params.id[1], name || currentBin.name, price || currentBin.price).then(inventory => {
@@ -42,6 +41,12 @@ module.exports = {
       }).catch( err => console.log(err));
     }).catch(function(err) {
       console.log(err);
+    })
+  },
+  deleteBin: (req, res, next) => {
+    db.delete_bin(req.params.id[0], req.params.id[1]).then(inventory => {
+        res.status(200).send();
+      }).catch( err => console.log(err));
     })
   }
 }
