@@ -1,5 +1,3 @@
-const app = require('./server.js');
-
 module.exports = {
   getShelf: (req, res, next) => {
     const db = req.app.get('db');
