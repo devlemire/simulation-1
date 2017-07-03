@@ -1,5 +1,6 @@
 const express = require('express');
-const massive = require('massive')
+const massive = require('massive');
+const connectionString = require(`${__dirname}/config.js`);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -8,13 +9,7 @@ const app = module.exports = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-massive({
-  host: "localhost",
-  port: 4000,
-  database: "inventory",
-  user: "postgres",
-  password: "Larios953"
-}).then( db => {
+massive( connectionString ).then( db => {
   app.set('db', db);
 });
 
