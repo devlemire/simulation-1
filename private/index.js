@@ -11,7 +11,7 @@ app.use(cors());
 
 massive( connectionString ).then( db => {
   app.set('db', db);
-});
+}).catch( err => console.log(err) );
 
 const inventoryCtrl = require("./inventoryCtrl.js");
 
