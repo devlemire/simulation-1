@@ -17,7 +17,7 @@ const inventoryCtrl = require("./inventoryCtrl.js");
 
 app.get("/api/shelf/:id", inventoryCtrl.getShelf);
 app.get("/api/bin/:id", inventoryCtrl.getBin);
-app.put("/api/bin/:id", inventoryCtrl.)
+app.put("/api/bin/:id", inventoryCtrl.updateBin);
 
 // GET - /api/shelf/:id - Return all inventory objects for bins 1-5 in array format: ( [ {}, null, null, {}, {} ] )
 // GET - /api/bin/:id - Return inventory object located at id. id will look like: "A3", we can split this string and the first element will always be the shelf ID and the second element will always be the bin ID

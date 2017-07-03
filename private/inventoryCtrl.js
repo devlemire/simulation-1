@@ -31,5 +31,19 @@ module.exports = {
     }).catch(function(err) {
       console.log(err);
     })
+  },
+  updateBin: (req, res, next) => {
+    const db = req.app.get('db');
+
+    db.update_bin().then(inventory => {
+      if(inventory.length > 0){
+        res.status(200).send(inventory);
+      } else {
+        res.status(200).send([null]);
+      }
+      res.status(200).send(inventory);
+    }).catch(function(err) {
+      console.log(err);
+    })
   }
 }
