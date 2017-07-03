@@ -42,5 +42,11 @@ module.exports = {
     }).catch(function(err) {
       console.log(err);
     })
+  },
+  deleteBin: (req, res, next) => {
+    db.delete_bin(req.params.id[0], req.params.id[1]).then(inventory => {
+        res.status(200).send();
+      }).catch( err => console.log(err));
+    })
   }
 }
