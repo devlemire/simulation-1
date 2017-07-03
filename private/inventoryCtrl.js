@@ -23,9 +23,9 @@ module.exports = {
 
     db.get_bin(req.params.id[0], req.params.id[1]).then(inventory => {
       if(inventory.length > 0){
-        res.status(200).send(inventory);
+        res.status(200).send( inventory[0] );
       } else {
-        res.status(200).send([null]);
+        res.status(200).send( null );
       }
       res.status(200).send(inventory);
     }).catch(function(err) {

@@ -24,7 +24,7 @@ export default class Detail extends Component {
       if ( !response.data ) {
         history.push(`/create/${id}`);
       } else {
-        this.setState({ item: response.data[0] });
+        this.setState({ item: response.data });
       }
     });
   }
