@@ -42,7 +42,7 @@ export default class Detail extends Component {
     if ( isNaN( price ) ) {
       return
     } else {
-      axios.put( `${api.bin}/${id}`, { name, price: parseInt( price ) } ).then( response => {
+      axios.put( `${api.bin}/${id}`, { name, price: parseInt( price, 10 ) } ).then( response => {
         const { data } = response;
         this.setState({ item: data, name: data.name, price: data.price, editMode: false });
       });
@@ -59,14 +59,13 @@ export default class Detail extends Component {
 
   render() {
     const { item, editMode, name, price } = this.state;
-    const { history } = this.props;
     return (
       <div>
         { 
           item
           ?
             <div>
-              <img src={ item.image } />
+              <img src={ item.image } alt="inventory" />
               {
                 editMode
                 ?
