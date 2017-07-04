@@ -48,5 +48,11 @@ module.exports = {
     db.delete_bin(req.params.id[0], req.params.id[1]).then(inventory => {
         res.status(200).send();
     }).catch( err => console.log(err));
+  },
+  addBin: (req, res, next) => {
+    const db = req.app.get('db');
+    db.add_bin(req.body.name, req.params.id[0], req.params.id[1], req.body.image, req.body.price).then(inventory => {
+        res.status(200).send(inventory);
+    }).catch( err => console.log(err));
   }
 }
