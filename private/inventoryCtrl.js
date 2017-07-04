@@ -51,8 +51,14 @@ module.exports = {
   },
   addBin: (req, res, next) => {
     const db = req.app.get('db');
-    db.add_bin(req.body.name, req.params.id[0], req.params.id[1], req.body.image, req.body.price).then(inventory => {
-        res.status(200).send(inventory);
-    }).catch( err => console.log(err));
+    db.get_bin(req.params.id[0], req.params.id[1]).then(inventory => {
+      if(inventory.length === 0){
+        db.add_bin(req.body.name, req.params.id[0], req.params.id[1], req.body.image, req.body.price).then(inventory => {
+            res.status(200).send(inventory);
+        }).catch( err => console.log(err));
+      } else {
+        res.status(200).send('Bin already taken');
+      }
+    })
   }
 }
