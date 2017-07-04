@@ -11,6 +11,6 @@ export default (
     <Route component={ Shelves } path="/" exact />
     <Route component={ Bins } path="/bins/:id" />
     <Route component={ Detail } path="/bin/:id" />
-    <Route component={ Create } path="/create" />
+    <Route component={ Create } path="/create/:id" />
   </Switch>
 )
