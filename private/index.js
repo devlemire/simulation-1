@@ -1,6 +1,6 @@
 const express = require('express');
 const massive = require('massive');
-const connectionString = require(`${__dirname}/config.js`);
+const { connectionString } = require(`${__dirname}/config.js`);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 

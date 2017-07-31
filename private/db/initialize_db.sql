@@ -1,3 +1,8 @@
+CREATE DATABASE inventory;
+
+-- Connect to the inventory database BEFORE creating the inventory table.
+-- \c inventory;
+
 CREATE TABLE inventory (
   	id SERIAL PRIMARY KEY,
   	name VARCHAR(240),
@@ -24,5 +29,5 @@ VALUES
 ('item C5', 'C', 5, 'http://lorempixel.com/200/200/business/', 15),
 
 ('item D1', 'D', 1, 'http://lorempixel.com/200/200/business/', 9),
-('item D2', 'D', 2, 'http://lorempixel.com/200/200/business/', 1);
+('item D2', 'D', 2, 'http://lorempixel.com/200/200/business/', 1),
 ('item D5', 'D', 5, 'http://lorempixel.com/200/200/business/', 6);
