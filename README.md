@@ -15,7 +15,7 @@
       
       ```js
       module.exports = {
-        connectionString: 'postgres://jameslemire:9289@localhost/inventory'
+        connectionString: 'postgres://username:password@localhost/inventory'
       }
       ```
       
