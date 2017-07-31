@@ -11,7 +11,7 @@
   * `connectionString`: This should point to the `inventory` database.
     * <details>
     
-      <summary> <code>  </code> </summary>
+      <summary> <code> Example </code> </summary>
       
       ```js
       module.exports = {
